@@ -6,35 +6,52 @@ import { Character } from "../interfaces/character.interface";
 })
 export class DbzService {
 
+    contructor() {}
+
     public characters: Character[] = [
         {
+            id: 1,
             name: 'Krillin',
             power: 1000
         },
         {
+            id: 2,
             name: 'Goku',
             power: 9500
-        },{
+        },
+        {
+            id: 3,
             name: 'Vegeta',
             power: 7500
         }
     ];
 
-    onNewCharacter(character: Character): void {
+    contador: number = this.characters.length;
 
-        this.characters.push(character);
+    addCharacter(character: Character): void {
+
+        //usando spread ...
+        const newCharacter: Character = { id: ++this.contador, ...character };
+        this.characters.push(newCharacter);
+        console.log(newCharacter);
+
+        // Mi solución
+        // this.contador++;
+        // character.id =  this.contador;
+        // this.characters.push(character);
 
         // console.log('Main Page');
         // console.log(character);
         
     }
 
-    onDeleteCharacterById(index: number) {
-        this.characters.splice(index, 1);
+    deleteCharacterById(id: number) {
+        // console.log(id);
+        // this.characters.splice(id-1, 1);
+        this.characters = this.characters.filter( character => character.id !== id );
+        //Para poder ver que se esta eliminando en pantalla
+        // this.characters.splice(index, 1).forEach( value => console.log(value));
+        console.log(this.characters);
     }
-    
-    contructor() { }
-
-
     
 }

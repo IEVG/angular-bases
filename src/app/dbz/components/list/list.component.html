@@ -12,7 +12,7 @@
                 'list-group-item-primary' : isEven
         }">
 
-        <span class="text-primary">{{ i + 1 }}.</span>
+        <span class="text-primary">{{ character.id }}.</span>
         <!-- <span class="text-primary">{{ i }}.</span> -->
 
         <span>{{ character.name }}</span>
@@ -28,7 +28,7 @@
 
         <span> Es impar: {{ isOdd }}</span> -->
 
-        <button class="btn btn-danger" (click) = "onDeleteCharacter(i)">X</button>
+        <button class="btn btn-danger" (click) = "onDeleteCharacter(character.id)">X</button>
 
     </ol>
 </ul>

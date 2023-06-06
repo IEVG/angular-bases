@@ -8,20 +8,23 @@ import { DbzService } from "../services/dbz.service";
 })
 export class MainPagesComponent {
 
-    public characters: Character[] = [];
+    // public characters: Character[] = [];
 
-    constructor(public dbzService: DbzService) {
-        this.characters = this.dbzService.characters;
-     }
-
-    getNewCharacter(character: Character): void {
-
-        this.dbzService.onNewCharacter(character);
-        
+    constructor(private dbzService: DbzService) {
+        // this.characters = this.dbzService.characters;
     }
 
-    deleteCharacterById(index: number): void {
-        this.dbzService.onDeleteCharacterById(index);
+    get characters(): Character[] {
+        return [...this.dbzService.characters];
+    }
+
+    getNewCharacter(character: Character): void {
+        this.dbzService.addCharacter(character);
+    }
+
+    deleteCharacterById( id: number ): void {
+        this.dbzService.deleteCharacterById(id);
+        // this.characters = this.dbzService.characters;
     }
 
 }
